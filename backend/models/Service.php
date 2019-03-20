@@ -7,9 +7,11 @@ use Yii;
 /**
  * This is the model class for table "price".
  *
- * @property string $price Цена
+ * @property int $id ID
+ * @property int $code Код
+ * @property int $price Цена
  * @property string $desc Описание
- * @property string $status Статус (включена/выключена)
+ * @property int $status Статус (включена/выключена)
  * @property string $data_duration Срок действия
  * @property string $city Город действия
  */
@@ -37,8 +39,9 @@ class Service extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'status', 'data_duration'], 'required'],
-            [['price', 'status', 'desc'], 'string'],
+            [['code', 'price', 'status', 'data_duration'], 'required'],
+            [['code', 'price', 'status'], 'integer'],
+            [['desc'], 'string'],
             [['code', 'price', 'status', 'data_duration'], 'safe'],
             [['city'], 'string', 'max' => 100],
         ];
@@ -85,7 +88,8 @@ class Service extends \yii\db\ActiveRecord
                     'data_edit' => date("Y-m-d H:i:s"),
                     'city' => $res['city'],
                     'id' => $this->id,
-                    'user' => Yii::$app->user->identity->username
+                    'user' => Yii::$app->user->identity->username,
+                    'data_duration' => $res['data_duration']
                 ])->execute();
             }
             Yii::$app->session->setFlash('success', 'Запись обновлена');

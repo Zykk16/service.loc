@@ -38,7 +38,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Service', 'url' => ['/service/index']],
+//        ['label' => 'Service', 'url' => ['/service/index']],
         ['label' => 'Front', 'url' => Url::to('http://service.loc/')],
     ];
     if (Yii::$app->user->isGuest) {

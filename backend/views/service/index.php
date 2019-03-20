@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\ServiceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Services';
+$this->title = 'Услуги';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="service-index">
@@ -47,13 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {history}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">Открыть</button><br>', $url);
+                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">Открыть</button><br>', '/service/view?id='.$model->id);
                     },
                     'update' => function ($url, $model) {
-                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">Изменить</button><br>', $url);
+                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">Изменить</button><br>', '/service/update?id='.$model->id);
                     },
                     'history' => function ($url, $model) {
-                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">История</button><br>', $url);
+                        return Html::a('<button class="btn btn-sm btn-outline-secondary" style="margin-bottom: 5px;width: 100%;">История</button><br>', '/service/history?id='.$model->id);
                     },
 
                 ],

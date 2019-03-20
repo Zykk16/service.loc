@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -52,7 +53,12 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+
+        if ($user->save()) {
+            $auth = Yii::$app->authManager;
+            $editor = $auth->getRole('operator');
+            $auth->assign($editor, $user->id);
+        }
+        return $user;
     }
 }
